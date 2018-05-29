@@ -1,0 +1,59 @@
+{
+  "name": "simple-graphql-server",
+  "description": "Simple GraphQL Server with Subscriptions in Express",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.3",
+    "babel-jest": "^23.0.0",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-flowtype": "^2.47.1",
+    "eslint-plugin-import": "^2.12.0",
+    "flow-bin": "^0.73.0",
+    "graphql-request": "^1.6.0",
+    "jest": "^23.0.0",
+    "jest-environment-node": "^23.0.0",
+    "mongodb-memory-server": "^1.7.4",
+    "nodemon": "^1.17.5",
+    "prettier": "^1.12.1"
+  },
+  "dependencies": {
+    "@entria/graphql-mongoose-loader": "^1.8.1",
+    "dataloader": "^1.4.0",
+    "dotenv": "^5.0.1",
+    "graphql": "^0.13.2",
+    "graphql-iso-date": "^3.5.0",
+    "graphql-relay": "^0.5.5",
+    "graphql-tools": "^3.0.2",
+    "graphql-yoga": "^1.14.5",
+    "jsonwebtoken": "^8.2.1",
+    "mongoose": "^5.1.2"
+  },
+  "scripts": {
+    "start": "nodemon --exec babel-node src/index.js",
+    "prettier": "prettier --single-quote --trailing-comma all --write 'src/**/*.js'",
+    "lint": "eslint src/**",
+    "flow": "flow check --color=always",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "jest": {
+    "testEnvironment": "<rootDir>/test/mongodb",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "./dist"
+    ],
+    "coverageReporters": [
+      "lcov",
+      "html"
+    ],
+    "coverageDirectory": "./coverage/",
+    "resetModules": true
+  }
+}
