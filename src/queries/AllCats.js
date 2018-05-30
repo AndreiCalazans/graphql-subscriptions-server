@@ -2,9 +2,9 @@
 import { GraphQLInt } from 'graphql';
 import { connectionDefinitions, connectionArgs } from 'graphql-relay';
 
-import { GraphQLCat } from './Cat';
+import GraphQLCat from '../types/Cat';
 import { CatLoader } from '../loaders';
-import type { GraphqlContextType } from '../types/GraphqlContextType';
+import type { GraphqlContextType } from '../flowTypes/GraphqlContextType';
 
 const { connectionType: AllCatsConnection } = connectionDefinitions({
   name: 'Cat',

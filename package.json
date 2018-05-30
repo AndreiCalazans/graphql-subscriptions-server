@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@entria/graphql-mongoose-loader": "^1.8.1",
+    "bcryptjs": "^2.4.3",
     "dataloader": "^1.4.0",
     "dotenv": "^5.0.1",
     "graphql": "^0.13.2",
@@ -40,6 +41,7 @@
     "prettier": "prettier --single-quote --trailing-comma all --write 'src/**/*.js'",
     "lint": "eslint src/**",
     "flow": "flow check --color=always",
+    "update-schema": "babel-node ./src/helpers/updateSchema.js",
     "test": "jest",
     "test:watch": "jest --watch"
   },

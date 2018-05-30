@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import { User } from '../models';
 import { JWT_KEY } from '../config';
 
-export async function getUser(token: string) {
+export async function getUser(token: ?string) {
   if (!token) {
     return null;
   }

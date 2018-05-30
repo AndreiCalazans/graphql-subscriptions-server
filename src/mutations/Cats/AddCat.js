@@ -2,10 +2,10 @@
 import { GraphQLNonNull, GraphQLString, GraphQLInt } from 'graphql';
 
 import { pubsub } from '../../config';
-import { GraphQLCat } from '../../queries/Cat';
+import GraphQLCat from '../../types/Cat';
 
-import type { GraphqlContextType } from '../../types/GraphqlContextType';
-import type { Cat as CatType } from '../../types/Cat';
+import type { GraphqlContextType } from '../../flowTypes/GraphqlContextType';
+import type { Cat as CatType } from '../../flowTypes/Cat';
 
 type argsType = {
   name: string,

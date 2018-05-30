@@ -1,4 +1,5 @@
 // @flow
+
 import { GraphQLServer } from 'graphql-yoga';
 
 import { getUser } from './helpers/getUser';
@@ -10,14 +11,21 @@ import connectDatabase from './database';
 (async () => {
   try {
     const info = await connectDatabase();
+    //  eslint-disable-next-line
     console.log(`Connected to ${info.host}:${info.port}/${info.name}`);
   } catch (error) {
+    //  eslint-disable-next-line
     console.error('Unable to connect to database');
     process.exit(1);
   }
 
   const createContext = async (ctx) => {
-    const user = await getUser(ctx.request.headers.authorization);
+    const hasRequest = 'request' in ctx;
+    const hasConnection = 'connection' in ctx;
+    const connectionToken = hasConnection ? ctx.connection.context.authorization : undefined;
+    const token = hasRequest ? ctx.request.headers.authorization : connectionToken;
+
+    const user = await getUser(token);
 
     return {
       user,
@@ -25,7 +33,7 @@ import connectDatabase from './database';
       models,
       dataloaders,
     };
-  }
+  };
 
   const server = new GraphQLServer({
     schema,
@@ -33,5 +41,6 @@ import connectDatabase from './database';
   });
 
   server.start({ port: PORT, cacheControl: true }, () =>
+    //  eslint-disable-next-line
     console.log(`GraphQL Server is now running on ${BASE_URI}`));
 })();

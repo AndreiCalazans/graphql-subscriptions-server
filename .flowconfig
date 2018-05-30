@@ -1,4 +1,10 @@
 [ignore]
+.*/node_modules/bcryptjs/src/.*
+
+
+[untyped]
+.*/node_modules/@entria/graphql-mongoose-loader/.*
+
 
 [include]
 

@@ -7,8 +7,8 @@ import {
 import type { ConnectionArguments } from 'graphql-relay';
 
 import { Cat as CatModel } from '../models';
-import type { Cat as CatType } from '../types/Cat';
-import type { GraphqlContextType } from '../types/GraphqlContextType';
+import type { Cat as CatType } from '../flowTypes/Cat';
+import type { GraphqlContextType } from '../flowTypes/GraphqlContextType';
 
 export default class Cat {
   id: string

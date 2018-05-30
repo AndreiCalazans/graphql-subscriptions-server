@@ -1,8 +1,8 @@
 // @flow
 
 import { pubsub } from '../config';
-import { GraphQLCat } from '../queries/Cat';
-import type { Cat } from '../types/Cat';
+import GraphQLCat from '../types/Cat';
+import type { Cat } from '../flowTypes/Cat';
 
 export default {
   type: GraphQLCat,

@@ -6,13 +6,21 @@ import {
   GraphQLID,
   GraphQLObjectType,
   GraphQLString,
-  GraphQLInt,
 } from 'graphql';
 
 import { GraphQLDateTime } from 'graphql-iso-date';
 
+export type UserType = {
+  id: string,
+  name: string,
+  email: string,
+  createdAt: string,
+  updatedat: ?string,
+  avatarUrl: ?string,
+}
+
 export default new GraphQLObjectType({
-  name: 'Cat',
+  name: 'User',
   fields: {
     id: {
       type: new GraphQLNonNull(GraphQLID),
@@ -20,10 +28,7 @@ export default new GraphQLObjectType({
     name: {
       type: new GraphQLNonNull(GraphQLString),
     },
-    nickName: {
-      type: new GraphQLNonNull(GraphQLString),
-    },
-    description: {
+    email: {
       type: new GraphQLNonNull(GraphQLString),
     },
     createdAt: {
@@ -33,10 +38,8 @@ export default new GraphQLObjectType({
       type: GraphQLDateTime,
     },
     avatarUrl: {
-      type: new GraphQLNonNull(GraphQLString),
-    },
-    age: {
-      type: new GraphQLNonNull(GraphQLInt),
+      type: GraphQLString,
     },
   },
 });
+
