@@ -2,24 +2,16 @@ import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema(
   {
-    name: {
+    plate: {
       type: String,
       required: true,
     },
-    nickName: {
+    brand: {
       type: String,
       required: true,
     },
-    description: {
+    createdBy: {
       type: String,
-      required: true,
-    },
-    avatarUrl: {
-      type: String,
-      required: true,
-    },
-    age: {
-      type: Number,
       required: true,
     },
   },
@@ -28,16 +20,16 @@ const Schema = mongoose.Schema(
       createdAt: 'createdAt',
       updatedAt: 'updatedAt',
     },
-    collection: 'cats',
+    collection: 'cars',
   },
 );
 
 Schema.index({ description: 'text', name: 'text' });
 
-class CatDoc /* :: extends Mongoose$Model */ {}
+class CarDoc /* :: extends Mongoose$Model */ {}
 
-Schema.loadClass(CatDoc);
+Schema.loadClass(CarDoc);
 
-const CatModel: typeof CatDoc = mongoose.model('Cat', Schema);
+const CarModel: typeof CarDoc = mongoose.model('Car', Schema);
 
-export default CatModel;
+export default CarModel;

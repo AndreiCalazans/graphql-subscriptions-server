@@ -17,7 +17,7 @@
           "description": "Root Query",
           "fields": [
             {
-              "name": "cat",
+              "name": "car",
               "description": null,
               "args": [
                 {
@@ -33,14 +33,14 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "Cat",
+                "name": "Car",
                 "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "allCats",
+              "name": "allCars",
               "description": null,
               "args": [
                 {
@@ -86,7 +86,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "CatConnection",
+                "name": "CarConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -110,7 +110,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "Cat",
+          "name": "Car",
           "description": null,
           "fields": [
             {
@@ -130,7 +130,7 @@
               "deprecationReason": null
             },
             {
-              "name": "name",
+              "name": "plate",
               "description": null,
               "args": [],
               "type": {
@@ -146,7 +146,7 @@
               "deprecationReason": null
             },
             {
-              "name": "nickName",
+              "name": "brand",
               "description": null,
               "args": [],
               "type": {
@@ -162,7 +162,7 @@
               "deprecationReason": null
             },
             {
-              "name": "description",
+              "name": "createdBy",
               "description": null,
               "args": [],
               "type": {
@@ -170,7 +170,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "String",
+                  "name": "ID",
                   "ofType": null
                 }
               },
@@ -201,38 +201,6 @@
                 "kind": "SCALAR",
                 "name": "DateTime",
                 "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "avatarUrl",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "age",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -275,7 +243,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "CatConnection",
+          "name": "CarConnection",
           "description": "A connection to a list of items.",
           "fields": [
             {
@@ -303,7 +271,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "CatEdge",
+                  "name": "CarEdge",
                   "ofType": null
                 }
               },
@@ -407,7 +375,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "CatEdge",
+          "name": "CarEdge",
           "description": "An edge in a connection.",
           "fields": [
             {
@@ -416,7 +384,7 @@
               "args": [],
               "type": {
                 "kind": "OBJECT",
-                "name": "Cat",
+                "name": "Car",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -450,9 +418,92 @@
           "description": "Root Mutation",
           "fields": [
             {
-              "name": "addCat",
+              "name": "login",
               "description": null,
               "args": [
+                {
+                  "name": "email",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "password",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "LoginPayload",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "signup",
+              "description": null,
+              "args": [
+                {
+                  "name": "email",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "password",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "passwordConfirmation",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                },
                 {
                   "name": "name",
                   "description": null,
@@ -466,9 +517,22 @@
                     }
                   },
                   "defaultValue": null
-                },
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "LoginPayload",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "addCar",
+              "description": null,
+              "args": [
                 {
-                  "name": "nickName",
+                  "name": "plate",
                   "description": null,
                   "type": {
                     "kind": "NON_NULL",
@@ -482,7 +546,7 @@
                   "defaultValue": null
                 },
                 {
-                  "name": "description",
+                  "name": "brand",
                   "description": null,
                   "type": {
                     "kind": "NON_NULL",
@@ -490,34 +554,6 @@
                     "ofType": {
                       "kind": "SCALAR",
                       "name": "String",
-                      "ofType": null
-                    }
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "avatarUrl",
-                  "description": null,
-                  "type": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "SCALAR",
-                      "name": "String",
-                      "ofType": null
-                    }
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "age",
-                  "description": null,
-                  "type": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "SCALAR",
-                      "name": "Int",
                       "ofType": null
                     }
                   },
@@ -526,14 +562,14 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "Cat",
+                "name": "Car",
                 "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "removeCat",
+              "name": "removeCar",
               "description": null,
               "args": [
                 {
@@ -553,7 +589,153 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "Cat",
+                "name": "Car",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "LoginPayload",
+          "description": null,
+          "fields": [
+            {
+              "name": "token",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "error",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "user",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "User",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "User",
+          "description": null,
+          "fields": [
+            {
+              "name": "id",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "name",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "email",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "createdAt",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "updatedAt",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "avatarUrl",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -571,24 +753,24 @@
           "description": "Root Subscription",
           "fields": [
             {
-              "name": "newCat",
+              "name": "newCar",
               "description": null,
               "args": [],
               "type": {
                 "kind": "OBJECT",
-                "name": "Cat",
+                "name": "Car",
                 "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "removedCat",
+              "name": "removedCar",
               "description": null,
               "args": [],
               "type": {
                 "kind": "OBJECT",
-                "name": "Cat",
+                "name": "Car",
                 "ofType": null
               },
               "isDeprecated": false,

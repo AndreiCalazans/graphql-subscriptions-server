@@ -2,14 +2,14 @@
 
 import { GraphQLObjectType } from 'graphql';
 
-import NewCat from './NewCat';
-import RemovedCat from './RemovedCat';
+import NewCar from './NewCar';
+import RemovedCar from './RemovedCar';
 
 export default new GraphQLObjectType({
   name: 'RootSubscription',
   description: 'Root Subscription',
   fields: {
-    newCat: NewCat,
-    removedCat: RemovedCat,
+    newCar: NewCar,
+    removedCar: RemovedCar,
   },
 });

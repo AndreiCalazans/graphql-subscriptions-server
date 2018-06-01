@@ -1,14 +1,14 @@
 // @flow
 
-import Cat from './Cat';
+import Car from './Car';
 import User from './User';
 
 export type ModelsType = {|
-  Cat: typeof Cat,
+  Car: typeof Car,
   User: typeof User,
 |}
 
 export {
-  Cat,
+  Car,
   User,
 };

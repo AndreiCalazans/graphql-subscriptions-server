@@ -2,15 +2,15 @@
 
 import { GraphQLID } from 'graphql';
 import type { GraphqlContextType } from '../flowTypes/GraphqlContextType';
-import type { Cat as CatType } from '../flowTypes/Cat';
-import GraphQLCat from '../types/Cat';
+import GraphqlCar from '../types/Car';
+import type { CarType } from '../types/Car';
 
 type argsType = {
   id: string,
 }
 
 export default {
-  type: GraphQLCat,
+  type: GraphqlCar,
   args: {
     id: {
       type: GraphQLID,
@@ -20,9 +20,9 @@ export default {
     _: mixed,
     { id }: argsType,
     { models }: GraphqlContextType,
-  ): Promise<CatType> => {
-    const cats = await models.Cat.find({ _id: id });
+  ): Promise<CarType> => {
+    const car = await models.Car.find({ _id: id });
 
-    return cats[0];
+    return car[0];
   },
 };

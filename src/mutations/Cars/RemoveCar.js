@@ -3,17 +3,16 @@
 import { GraphQLNonNull, GraphQLID } from 'graphql';
 
 import { pubsub } from '../../config';
-import GraphQLCat from '../../types/Cat';
-
+import GraphqlCar from '../../types/Car';
+import type { CarType } from '../../types/Car';
 import type { GraphqlContextType } from '../../flowTypes/GraphqlContextType';
-import type { Cat as CatType } from '../../flowTypes/Cat';
 
 type argsType = {
   id: string,
 }
 
 export default {
-  type: GraphQLCat,
+  type: GraphqlCar,
   args: {
     id: {
       type: new GraphQLNonNull(GraphQLID),
@@ -23,10 +22,10 @@ export default {
     _: mixed,
     { id }: argsType,
     { models }: GraphqlContextType,
-  ): Promise<CatType> => {
-    const cat = await new models.Cat({ _id: id }).remove();
+  ): Promise<CarType> => {
+    const cat = await new models.Car({ _id: id }).remove();
 
-    pubsub.publish('removedCat', cat);
+    pubsub.publish('removedCar', cat);
     return cat;
   },
 };

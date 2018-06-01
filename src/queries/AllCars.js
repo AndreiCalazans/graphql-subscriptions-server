@@ -2,13 +2,13 @@
 import { GraphQLInt } from 'graphql';
 import { connectionDefinitions, connectionArgs } from 'graphql-relay';
 
-import GraphQLCat from '../types/Cat';
-import { CatLoader } from '../loaders';
+import GraphqlCar from '../types/Car';
+import { CarLoader } from '../loaders';
 import type { GraphqlContextType } from '../flowTypes/GraphqlContextType';
 
-const { connectionType: AllCatsConnection } = connectionDefinitions({
-  name: 'Cat',
-  nodeType: GraphQLCat,
+const { connectionType: AllCarsConnection } = connectionDefinitions({
+  name: 'Car',
+  nodeType: GraphqlCar,
   connectionFields: {
     count: {
       type: GraphQLInt,
@@ -17,10 +17,10 @@ const { connectionType: AllCatsConnection } = connectionDefinitions({
 });
 
 export default {
-  type: AllCatsConnection,
+  type: AllCarsConnection,
   args: {
     ...connectionArgs,
   },
   resolve: async (_: mixed, args: Object, context: GraphqlContextType) =>
-    CatLoader.loadCats(context, args),
+    CarLoader.loadCars(context, args),
 };

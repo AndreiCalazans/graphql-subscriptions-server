@@ -6,25 +6,33 @@ import {
   GraphQLID,
   GraphQLObjectType,
   GraphQLString,
-  GraphQLInt,
 } from 'graphql';
 
 import { GraphQLDateTime } from 'graphql-iso-date';
 
+export type CarType = {
+  id: string,
+  plate: string,
+  brand: string,
+  createdBy: string,
+  createdAt: string,
+  updatedAt: ?string,
+}
+
 export default new GraphQLObjectType({
-  name: 'Cat',
+  name: 'Car',
   fields: {
     id: {
       type: new GraphQLNonNull(GraphQLID),
     },
-    name: {
+    plate: {
       type: new GraphQLNonNull(GraphQLString),
     },
-    nickName: {
+    brand: {
       type: new GraphQLNonNull(GraphQLString),
     },
-    description: {
-      type: new GraphQLNonNull(GraphQLString),
+    createdBy: {
+      type: new GraphQLNonNull(GraphQLID),
     },
     createdAt: {
       type: new GraphQLNonNull(GraphQLDateTime),
@@ -32,11 +40,6 @@ export default new GraphQLObjectType({
     updatedAt: {
       type: GraphQLDateTime,
     },
-    avatarUrl: {
-      type: new GraphQLNonNull(GraphQLString),
-    },
-    age: {
-      type: new GraphQLNonNull(GraphQLInt),
-    },
   },
 });
+

@@ -1,3 +1,3 @@
-import * as CatLoader from './CatLoader';
+import * as CarLoader from './CarLoader';
 
-export { CatLoader };
+export { CarLoader };

@@ -6,36 +6,32 @@ import {
 } from '@entria/graphql-mongoose-loader';
 import type { ConnectionArguments } from 'graphql-relay';
 
-import { Cat as CatModel } from '../models';
-import type { Cat as CatType } from '../flowTypes/Cat';
+import { Car as CarModel } from '../models';
+import type { CarType } from '../types/Car';
 import type { GraphqlContextType } from '../flowTypes/GraphqlContextType';
 
-export default class Cat {
-  id: string
-  name: string
-  nickName: string
-  description: string
-  createdAt: string
-  updatedAt: string
-  avatarUrl: string
-  age: number
+export default class Car {
+  id: string;
+  plate: string;
+  brand: string;
+  createdBy: string;
+  createdAt: string;
+  updatedAt: ?string;
 
   // eslint-disable-next-line
-  constructor(data: CatType, { cat }: GraphqlContextType) {
+  constructor(data: CarType, { cat }: GraphqlContextType) {
     this.id = data.id;
-    this.name = data.name;
-    this.nickName = data.nickName;
-    this.description = data.description;
+    this.plate = data.plate;
+    this.brand = data.brand;
     this.createdAt = data.createdAt;
     this.updatedAt = data.updatedAt;
-    this.avatarUrl = data.avatarUrl;
-    this.age = data.age;
+    this.createdBy = data.createdBy;
   }
 }
 
 export const getLoader = () =>
   //  $FlowFixMe
-  new DataLoader(ids => mongooseLoader(CatModel, ids));
+  new DataLoader(ids => mongooseLoader(CarModel, ids));
 
   // eslint-disable-next-line
 const viewerCanSee = (context, data) =>
@@ -46,28 +42,28 @@ const viewerCanSee = (context, data) =>
 export const load = async (
   context: GraphqlContextType,
   id: string,
-): Promise<?Cat> => {
+): Promise<?Car> => {
   if (!id) {
     return null;
   }
 
   let data;
   try {
-    data = await context.dataloaders.CatLoader.load(id);
+    data = await context.dataloaders.CarLoader.load(id);
   } catch (err) {
     return null;
   }
-  return viewerCanSee(context, data) ? new Cat(data, context) : null;
+  return viewerCanSee(context, data) ? new Car(data, context) : null;
 };
 
 export const clearCache = ({ dataloaders }: GraphqlContextType, id: string) =>
-  dataloaders.CatLoader.clear(id.toString());
+  dataloaders.CarLoader.clear(id.toString());
 
-export const loadCats = async (
+export const loadCars = async (
   context: GraphqlContextType,
   args: ConnectionArguments,
 ) => {
-  const cursor = context.models.Cat.find().sort({ createdAt: -1 });
+  const cursor = context.models.Car.find().sort({ createdAt: -1 });
 
   return connectionFromMongoCursor({
     cursor,

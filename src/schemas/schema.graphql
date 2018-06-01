@@ -4,31 +4,29 @@ schema {
   subscription: RootSubscription
 }
 
-type Cat {
+type Car {
   id: ID!
-  name: String!
-  nickName: String!
-  description: String!
+  plate: String!
+  brand: String!
+  createdBy: ID!
   createdAt: DateTime!
   updatedAt: DateTime
-  avatarUrl: String!
-  age: Int!
 }
 
 """A connection to a list of items."""
-type CatConnection {
+type CarConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [CatEdge]
+  edges: [CarEdge]
   count: Int
 }
 
 """An edge in a connection."""
-type CatEdge {
+type CarEdge {
   """The item at the end of the edge"""
-  node: Cat
+  node: Car
 
   """A cursor for use in pagination"""
   cursor: String!
@@ -40,6 +38,12 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the
 8601 standard for representation of dates and times using the Gregorian calendar.
 """
 scalar DateTime
+
+type LoginPayload {
+  token: String
+  error: String
+  user: User
+}
 
 """Information about pagination in a connection."""
 type PageInfo {
@@ -58,18 +62,29 @@ type PageInfo {
 
 """Root Mutation"""
 type RootMutation {
-  addCat(name: String!, nickName: String!, description: String!, avatarUrl: String!, age: Int!): Cat
-  removeCat(id: ID!): Cat
+  login(email: String!, password: String!): LoginPayload
+  signup(email: String!, password: String!, passwordConfirmation: String!, name: String!): LoginPayload
+  addCar(plate: String!, brand: String!): Car
+  removeCar(id: ID!): Car
 }
 
 """Root Query"""
 type RootQuery {
-  cat(id: ID): Cat
-  allCats(after: String, first: Int, before: String, last: Int): CatConnection
+  car(id: ID): Car
+  allCars(after: String, first: Int, before: String, last: Int): CarConnection
 }
 
 """Root Subscription"""
 type RootSubscription {
-  newCat: Cat
-  removedCat: Cat
+  newCar: Car
+  removedCar: Car
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  avatarUrl: String
 }
