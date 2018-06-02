@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+const { ObjectId } = mongoose.Schema.Types;
+
 const Schema = mongoose.Schema(
   {
     plate: {
@@ -11,7 +13,8 @@ const Schema = mongoose.Schema(
       required: true,
     },
     createdBy: {
-      type: String,
+      type: ObjectId,
+      ref: 'User',
       required: true,
     },
   },

@@ -15,7 +15,7 @@ export type UserType = {
   name: string,
   email: string,
   createdAt: string,
-  updatedat: ?string,
+  updatedAt: ?string,
   avatarUrl: ?string,
 }
 

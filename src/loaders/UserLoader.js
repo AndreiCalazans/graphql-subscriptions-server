@@ -6,33 +6,32 @@ import {
 } from '@entria/graphql-mongoose-loader';
 import type { ConnectionArguments } from 'graphql-relay';
 
-import { Car as CarModel } from '../models';
-import type { CarType } from '../types/Car';
+import { User as UserModel } from '../models';
 import type { UserType } from '../types/User';
 import type { GraphqlContextType } from '../flowTypes/GraphqlContextType';
 
-export default class Car {
+export default class User {
   id: string;
-  plate: string;
-  brand: string;
-  createdBy: UserType;
+  name: string;
+  email: string;
   createdAt: string;
   updatedAt: ?string;
+  avatarUrl: ?string;
 
   // eslint-disable-next-line
-  constructor(data: CarType, { cat }: GraphqlContextType) {
+  constructor(data: UserType, { user }: GraphqlContextType) {
     this.id = data.id;
-    this.plate = data.plate;
-    this.brand = data.brand;
+    this.name = data.name;
+    this.email = data.email;
     this.createdAt = data.createdAt;
     this.updatedAt = data.updatedAt;
-    this.createdBy = data.createdBy;
+    this.avatarUrl = data.avatarUrl;
   }
 }
 
 export const getLoader = () =>
   //  $FlowFixMe
-  new DataLoader(ids => mongooseLoader(CarModel, ids));
+  new DataLoader(ids => mongooseLoader(UserModel, ids));
 
   // eslint-disable-next-line
 const viewerCanSee = (context, data) =>
@@ -43,28 +42,28 @@ const viewerCanSee = (context, data) =>
 export const load = async (
   context: GraphqlContextType,
   id: string,
-): Promise<?Car> => {
+): Promise<?User> => {
   if (!id) {
     return null;
   }
 
   let data;
   try {
-    data = await context.dataloaders.CarLoader.load(id);
+    data = await context.dataloaders.UserLoader.load(id);
   } catch (err) {
     return null;
   }
-  return viewerCanSee(context, data) ? new Car(data, context) : null;
+  return viewerCanSee(context, data) ? new User(data, context) : null;
 };
 
 export const clearCache = ({ dataloaders }: GraphqlContextType, id: string) =>
-  dataloaders.CarLoader.clear(id.toString());
+  dataloaders.UserLoader.clear(id.toString());
 
-export const loadCars = async (
+export const loadUsers = async (
   context: GraphqlContextType,
   args: ConnectionArguments,
 ) => {
-  const cursor = context.models.Car.find().sort({ createdAt: -1 });
+  const cursor = context.models.User.find().sort({ createdAt: -1 });
 
   return connectionFromMongoCursor({
     cursor,
